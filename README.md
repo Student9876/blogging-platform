@@ -1,2 +1,2 @@
 # blogging-platform
-A blogging platform. Just craete and account and start blogging
+A blogging platform. Just creat and account and start blogging
