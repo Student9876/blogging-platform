@@ -9,6 +9,7 @@ const PostSchema = new mongoose.Schema({
         {
             text: String,
             user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+            username: String, // <-- Add this line
             createdAt: { type: Date, default: Date.now },
         },
     ],

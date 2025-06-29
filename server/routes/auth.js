@@ -16,7 +16,13 @@ router.post("/register", async (req, res) => {
 
 // Login
 router.post("/login", async (req, res) => {
-    const user = await User.findOne({ username: req.body.username });
+    // Try to find by username or email
+    const user = await User.findOne({
+        $or: [
+            { username: req.body.username },
+            { email: req.body.username }
+        ]
+    });
     if (!user) return res.status(400).json("User not found");
 
     const valid = await bcrypt.compare(req.body.password, user.password);

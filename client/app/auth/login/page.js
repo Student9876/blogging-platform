@@ -11,6 +11,7 @@ export default function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log("Logging in with:", form); 
         const res = await axios.post("http://localhost:5000/api/auth/login", form);
         login(res.data);
         router.push("/");

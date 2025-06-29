@@ -5,7 +5,14 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 const app = express();
-app.use(cors());
+
+const corsOptions = {
+    origin: "http://localhost:3000", // your frontend URL
+    credentials: true, // allow cookies and Authorization header
+};
+
+app.use(cors(corsOptions));
+
 app.use(express.json());
 
 // Routes
@@ -16,7 +23,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/posts", postRoutes);
 
 mongoose
-    .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .connect(process.env.MONGO_URI)
     .then(() => {
         app.listen(5000, () => console.log("Server running on http://localhost:5000"));
     })
